@@ -1,0 +1,48 @@
+# Editor and office temp files
+~$*
+*.tmp
+*.bak
+
+# Private user documents and rendered submissions
+*.docx
+*.doc
+*.pdf
+*.pptx
+*.ppt
+*.xlsx
+*.xls
+
+# Allow intentionally shared templates/assets in this toolkit.
+!templates/**/*.docx
+!templates/**/*.pptx
+!templates/**/*.xlsx
+!assets/**/*.docx
+!assets/**/*.pptx
+!assets/**/*.xlsx
+
+# Large or private data artifacts
+data/
+results/
+traces/
+outputs/
+artifacts/
+*.npz
+*.npy
+*.pt
+*.pth
+*.safetensors
+*.onnx
+
+# Local environments and caches
+.venv/
+venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+node_modules/
+
+# Local secrets
+.env
+.env.*
+*.key
+*.pem

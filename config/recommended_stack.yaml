@@ -1,0 +1,68 @@
+version: 1
+last_reviewed: 2026-04-29
+
+roles:
+  local_document_machine:
+    primary:
+      - docx_openxml_checks
+      - wps_word_formatting
+      - editable_pptx_creation
+      - drawio_diagrams
+      - final_figure_export
+    recommended_tools:
+      - Word_or_WPS
+      - drawio_desktop
+      - d2
+      - mermaid
+      - matplotlib
+      - SciencePlots
+      - marimo
+      - optional_ppt_master
+      - optional_PptxGenJS
+      - optional_python_pptx
+
+  server_code_machine:
+    primary:
+      - code_indexing
+      - experiment_runs
+      - ai_ready_code_handoff
+      - result_data_export
+    recommended_tools:
+      - GitNexus
+      - Repomix
+      - Serena
+      - Aider
+      - optional_Cline
+      - optional_Roo_Code
+      - optional_Sourcebot
+
+  shared_memory_layer:
+    primary:
+      - stable_project_rules
+      - handoff_records
+      - tool_catalog
+      - figure_manifest
+      - prompt_records
+    recommended_tools:
+      - local_markdown
+      - optional_Graphiti
+      - optional_mem0
+      - optional_GraphRAG
+
+priority_adoption:
+  now:
+    - project_memory_handoff_skill
+    - docx_format_guard_skill
+    - editable_ppt_builder_skill
+    - figure_pipeline_skill
+    - gpt_image_2_workflow_skill
+    - local_markdown_templates
+  next:
+    - Repomix_on_server_repos
+    - GitNexus_or_Serena_trial
+    - marimo_figure_notebooks
+    - drawio_source_preservation
+  later:
+    - self_hosted_Graphiti_or_mem0
+    - Sourcebot_for_large_multi_repo_search
+
