@@ -8,6 +8,7 @@ tool against the exact task before adopting it.
 | Area | Tool | Why keep it |
 | --- | --- | --- |
 | Code graph | GitNexus | Builds a code knowledge graph and helps agents inspect dependencies. |
+| Semantic code retrieval | Claude Context | MCP semantic search over indexed codebases; useful for reducing broad context loads. |
 | Code snapshot | Repomix | Packs selected repo files into an AI-friendly context bundle. |
 | Semantic code work | Serena | MCP-style semantic retrieval and editing for larger codebases. |
 | Terminal coding | Aider | Strong CLI pair-programming workflow for Git repositories. |
@@ -29,6 +30,18 @@ tool against the exact task before adopting it.
   repo structure before editing code.
 - Keep in mind: the graph is a navigation aid, not proof. Claims still need
   direct file and test verification.
+
+### Claude Context
+
+- Repo: https://github.com/zilliztech/claude-context
+- Local clone: `third_party/claude-context` when present.
+- Fit: MCP semantic/hybrid code search over large codebases.
+- Use when: a server Codex/Claude Code session repeatedly needs to locate
+  relevant files in a large repo without loading broad directories.
+- Requirements: Node.js, an embedding provider, and Milvus/Zilliz or local
+  Milvus. See `docs/token_saving_and_context_indexing.md`.
+- Keep in mind: retrieval saves context only when queries are narrow. It is not
+  proof; verify against source files, tests, logs, or renders.
 
 ### Repomix
 
@@ -207,7 +220,7 @@ tool against the exact task before adopting it.
 2. Use draw.io, Matplotlib/SciencePlots, and editable PPT workflows for current
    document work.
 3. Add Repomix to the server machine for AI handoff.
-4. Test GitNexus or Serena on one real code repo before standardizing.
+4. Test Claude Context, GitNexus, or Serena on one real code repo before
+   standardizing.
 5. Evaluate Graphiti or mem0 only after privacy and self-hosting choices are
    clear.
-

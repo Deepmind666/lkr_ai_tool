@@ -33,6 +33,8 @@ Do not keep:
 4. Create or copy a project-specific `AGENTS.md` in the target project.
 5. Create a fresh `templates/session_memory.md` entry before major work starts.
 6. Install only the tools needed for that machine's role.
+7. For server-side Codex, paste `templates/server_codex_bootstrap_prompt.md`
+   into the first session.
 
 ## Machine Roles
 
@@ -68,11 +70,23 @@ Primary work:
 
 Recommended tools:
 
+- Claude Context MCP for semantic code search when the repo is too large for
+  direct inspection.
 - GitNexus or Serena for code graph and semantic navigation.
 - Repomix for compact repo snapshots.
 - Aider, Cline, or Roo Code for coding workflows.
 - Sourcebot if the codebase becomes large.
 - marimo or plain Python scripts for reproducible analysis.
+
+Recommended server setup:
+
+1. Copy `config/codex_mcp_claude_context.toml.example` into
+   `~/.codex/config.toml` and replace placeholders.
+2. Restart Codex so the MCP server is visible.
+3. In each large repo, run `Index this codebase`, then check status before
+   semantic searches.
+4. Use `skills/context-economy/SKILL.md` and `skills/pua/SKILL.md` to keep
+   searches narrow and prevent failed-task loops.
 
 ## Data And Figure Handoff Contract
 
@@ -116,6 +130,7 @@ Give the next GPT:
 
 - the target project `AGENTS.md`,
 - `docs/usage_for_other_gpts.md`,
+- `docs/token_saving_and_context_indexing.md`,
 - latest `templates/session_memory.md` entry,
 - exact file paths,
 - exact source data or figure directory,
@@ -124,4 +139,3 @@ Give the next GPT:
 
 Do not ask a new GPT to infer project rules from a long chat transcript. Give it
 the rules and the current state as files.
-

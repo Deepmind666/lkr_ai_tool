@@ -34,9 +34,10 @@ lkr_ai_tool/
 1. `docs/usage_for_other_gpts.md`
 2. `docs/migration_playbook.md`
 3. `docs/tool_catalog.md`
-4. `docs/editable_ppt_workflow.md`
-5. `docs/gpt_image_2_tips.md`
-6. `docs/local_experience.md`
+4. `docs/token_saving_and_context_indexing.md`
+5. `docs/editable_ppt_workflow.md`
+6. `docs/gpt_image_2_tips.md`
+7. `docs/local_experience.md`
 
 ## Current Bias
 
@@ -48,6 +49,7 @@ This kit is optimized for:
 - AI image generation as a visual asset source, not as a substitute for
   editable slides.
 - Codebase context packaging for another coding GPT or server agent.
+- Token-efficient codebase retrieval through MCP/search before broad file reads.
 
 ## Repository Rules
 

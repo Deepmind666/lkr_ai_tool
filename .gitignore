@@ -40,6 +40,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 node_modules/
+third_party/
 
 # Local secrets
 .env

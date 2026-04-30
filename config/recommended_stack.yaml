@@ -24,10 +24,12 @@ roles:
   server_code_machine:
     primary:
       - code_indexing
+      - semantic_context_retrieval
       - experiment_runs
       - ai_ready_code_handoff
       - result_data_export
     recommended_tools:
+      - Claude_Context
       - GitNexus
       - Repomix
       - Serena
@@ -59,10 +61,10 @@ priority_adoption:
     - local_markdown_templates
   next:
     - Repomix_on_server_repos
+    - Claude_Context_MCP_trial
     - GitNexus_or_Serena_trial
     - marimo_figure_notebooks
     - drawio_source_preservation
   later:
     - self_hosted_Graphiti_or_mem0
     - Sourcebot_for_large_multi_repo_search
-

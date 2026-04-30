@@ -1,0 +1,28 @@
+# Copy into ~/.codex/config.toml and replace placeholders.
+# Do not commit real API keys or tokens.
+
+[mcp_servers.claude-context]
+command = "npx"
+args = ["@zilliz/claude-context-mcp@latest"]
+env = {
+  "EMBEDDING_PROVIDER" = "OpenAI",
+  "OPENAI_API_KEY" = "YOUR_OPENAI_API_KEY",
+  "EMBEDDING_MODEL" = "text-embedding-3-small",
+  "MILVUS_ADDRESS" = "YOUR_ZILLIZ_OR_MILVUS_ENDPOINT",
+  "MILVUS_TOKEN" = "YOUR_ZILLIZ_OR_MILVUS_TOKEN"
+}
+startup_timeout_ms = 20000
+
+# Fully local alternative:
+#
+# [mcp_servers.claude-context]
+# command = "npx"
+# args = ["@zilliz/claude-context-mcp@latest"]
+# env = {
+#   "EMBEDDING_PROVIDER" = "Ollama",
+#   "OLLAMA_HOST" = "http://127.0.0.1:11434",
+#   "OLLAMA_MODEL" = "nomic-embed-text",
+#   "MILVUS_ADDRESS" = "127.0.0.1:19530",
+#   "MILVUS_TOKEN" = ""
+# }
+# startup_timeout_ms = 20000

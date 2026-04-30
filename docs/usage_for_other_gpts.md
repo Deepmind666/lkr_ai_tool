@@ -49,9 +49,20 @@ editing anything, identify the active project and load that project's rules.
 ## For Code And Experiments
 
 - Use code indexing tools only as navigation aids.
+- For large repos, prefer Claude Context/Serena/GitNexus/Repomix or `rg`
+  before broad file reads.
 - Verify claims against source files and tests.
 - Record repo commit, command, data path, and output path.
 - Separate local document work from server-side experiment work.
+
+## For Token Economy
+
+- Start from the latest handoff note instead of asking the user to restate
+  stable rules.
+- Search first, then read small slices.
+- Keep only final facts, paths, checks, and risks in memory.
+- Do not paste long logs, whole source files, or long paper excerpts when a
+  path plus summary is enough.
 
 ## Session Closeout
 
@@ -62,4 +73,3 @@ Before ending, update a handoff note with:
 - checks skipped,
 - unresolved risks,
 - next concrete task.
-
