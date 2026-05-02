@@ -18,6 +18,7 @@ tool against the exact task before adopting it.
 | PPT generation | PptxGenJS, python-pptx, pptx-automizer | Programmatic editable PowerPoint generation and template automation. |
 | Diagrams | draw.io desktop, Mermaid, D2, Penrose | Versionable diagram sources plus polished exports. |
 | Experiment figures | marimo, Matplotlib, SciencePlots, Seaborn, Altair, Plotly | Reproducible charts and notebooks. |
+| Academic research | arXiv, Semantic Scholar, OpenReview, Connected Papers, Zotero + Better BibTeX | Verifiable literature search, paper triage, and citation hygiene without fabricated references. |
 
 ## Code Knowledge And Server-Side Context
 
@@ -213,6 +214,75 @@ tool against the exact task before adopting it.
 - Fit: exploration, statistical charts, and interactive analysis.
 - Rule: final paper/report figures should still pass through a consistent style
   and export pipeline.
+
+## Academic / Research Workflow
+
+Pair this section with `skills/academic-research/SKILL.md`. The hard rule:
+never let an LLM produce a citation, BibTeX entry, or numeric result from
+memory; pull it from the source of truth and keep the raw response.
+
+### arXiv
+
+- Site: https://arxiv.org
+- API: https://info.arxiv.org/help/api/index.html
+- Fit: preprints in CS / ML / physics, fastest-moving venue.
+- Use when: latest method/result is needed; survey expansion via cs.LG / cs.CL
+  listings.
+- Rule: prefer the published venue version over the arXiv preprint when both
+  exist and the claim is load-bearing.
+
+### Semantic Scholar
+
+- Site: https://www.semanticscholar.org
+- API: https://api.semanticscholar.org
+- Fit: citation graph, references, influential-citation signals, paper
+  metadata, BibTeX export.
+- Use when: expanding from a seed paper, building a citation neighbourhood,
+  or pulling clean BibTeX programmatically.
+- Caution: API rate limits without a key; cache results locally.
+
+### Google Scholar
+
+- Site: https://scholar.google.com
+- Fit: broadest coverage including non-arXiv venues, books, theses.
+- Use when: a paper is not on arXiv or Semantic Scholar, or for citation
+  alerts on a topic.
+- Caution: no stable public API; scraping is fragile and against ToS.
+
+### OpenReview
+
+- Site: https://openreview.net
+- Fit: open peer review for ICLR / NeurIPS / COLM / TMLR and similar.
+- Use when: assessing why a paper was accepted/rejected, or finding the
+  reviewer-pointed limitations behind a method.
+
+### Connected Papers / Inciteful / Litmaps
+
+- Connected Papers: https://www.connectedpapers.com
+- Inciteful: https://inciteful.xyz
+- Litmaps: https://www.litmaps.com
+- Fit: visual neighbourhood expansion from one or more seed papers.
+- Use when: framing a new sub-area or sanity-checking that a literature search
+  did not miss an obvious cluster.
+- Caution: navigation only. Proof still lives in the papers themselves.
+
+### Zotero + Better BibTeX
+
+- Zotero: https://www.zotero.org
+- Better BibTeX: https://retorque.re/zotero-better-bibtex/
+- Fit: local reference manager, PDF storage, tags, annotations, stable cite
+  keys, auto-export of `references.bib`.
+- Use when: any project that will produce a paper, report, thesis, or
+  long-form deck with cited sources.
+- Rule: keep one Zotero library per machine, one collection per project, and
+  let Better BibTeX own the cite-key format.
+
+### Notes
+
+- BibTeX comes from the publisher, arXiv, Semantic Scholar, or Zotero. Never
+  from an LLM.
+- Per-paper notes follow `templates/literature_note.md`.
+- Cross-paper synthesis follows `templates/literature_comparison_table.md`.
 
 ## Adoption Order
 

@@ -35,7 +35,8 @@ numbers, no invented authors**.
 5. **Note in a structured form.** Use `templates/literature_note.md` so notes
    are comparable across papers.
 6. **Synthesize across papers.** Build a comparison table before writing prose.
-   Rows = papers, columns = the dimensions that matter for the decision.
+   Rows = papers, columns = the dimensions that matter for the decision. Use
+   `templates/literature_comparison_table.md`.
 7. **Cite cleanly.** Export BibTeX from the source of truth, not the LLM.
 
 ## Recommended Tool Stack
