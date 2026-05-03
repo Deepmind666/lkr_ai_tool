@@ -1,0 +1,3 @@
+﻿display_name: MoE Thesis Academic Polish
+short_description: Polish MoE simulation theses.
+default_prompt: Use this skill to revise a Chinese MoE inference simulation thesis so the writing stays centered on the ASTRA-sim input-chain contribution, with conservative DOCX formatting checks.
