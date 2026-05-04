@@ -1,0 +1,3 @@
+display_name: Codex Performance Maintenance
+short_description: Diagnose and safely clean Codex Desktop local state.
+default_prompt: Use this skill to diagnose Codex Desktop slowness, archive old oversized sessions, rotate sqlite logs only after Codex exits, and create compact handoff notes for fresh threads.
