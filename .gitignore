@@ -41,6 +41,9 @@ __pycache__/
 .ruff_cache/
 node_modules/
 third_party/
+.gitnexus/
+.claude/
+repomix-output.*
 
 # Local secrets
 .env

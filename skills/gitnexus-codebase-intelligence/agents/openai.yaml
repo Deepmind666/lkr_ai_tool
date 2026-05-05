@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitNexus Codebase Intelligence"
+  short_description: "Index and query large codebases safely."
+  default_prompt: "Use GitNexus and related codebase-intelligence tools to index, retrieve, and verify only the repository context needed for this task."
