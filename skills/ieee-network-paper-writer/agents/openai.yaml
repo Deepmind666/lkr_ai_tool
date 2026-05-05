@@ -1,0 +1,3 @@
+display_name: IEEE Network Paper Writer
+short_description: Review and revise IEEE/ACM networking papers with strict claim-data alignment.
+default_prompt: Use this skill to revise or review an IEEE/ACM networking manuscript with bounded claims, evidence-layer separation, reproducibility checks, and reviewer-risk triage.
