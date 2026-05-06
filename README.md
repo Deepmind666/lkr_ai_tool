@@ -38,12 +38,14 @@ lkr_ai_tool/
 5. `docs/editable_ppt_workflow.md`
 6. `docs/gpt_image_2_tips.md`
 7. `docs/local_experience.md`
+8. `docs/aigc_docx_audit.md`
 
 ## Current Bias
 
 This kit is optimized for:
 
 - DOCX/WPS/Word formatting safety.
+- Local DOCX AIGC-style risk auditing for thesis drafts.
 - Editable PPTX generation and revision.
 - Research-style charts and diagrams.
 - AI image generation as a visual asset source, not as a substitute for
