@@ -35,12 +35,25 @@ Use this hierarchy throughout the document:
 
 Each paragraph should have one job. Prefer the pattern "observation or conflict -> mechanism -> consequence for the simulation input chain".
 
+For Chapter 1 and Chapter 2, use the user's preferred "Xiao-style" paragraph skeleton:
+
+1. The first sentence states the paragraph's core claim.
+2. The middle sentences explain the technical mechanism, and every sentence must serve the first sentence.
+3. The last sentence connects the mechanism back to simulation workload inputs, Chakra ET conversion, or experiment validation.
+4. Do not open with a loose background sentence that the rest of the paragraph does not develop.
+
+For related work, organize simulator research by model, system, and architecture dimensions when appropriate. The opening may follow the user's wording: distributed AI training and inference performance simulation is important for hardware-software co-design, parallel-strategy evaluation, and cluster deployment optimization; as MoE-style sparse models enter inference deployment, the focus moves from static computation graphs and regular communication modeling toward model, system, and architecture dimensions.
+
 Replace generic claims with concrete objects:
 
 - weak: "该方法具有重要意义。"
 - stronger: "该转换保留了rank级计算时间和逐对端All-to-Allv字节量，使路由偏斜在进入ASTRA-sim前不会被平均通信量抹平。"
 
 Keep claims tied to data, equations, checks, or explicit boundaries. Avoid unsupported adjectives such as "有效", "显著", "充分", "可靠", "重要" unless a specific measurement supports them.
+
+Avoid disclaimer-like prose that repeatedly says "this thesis does not discuss...". State the research object positively first. Use one concise boundary sentence only where it prevents a real technical misunderstanding.
+
+Do not invent technical terms. Avoid terms the user rejected, including "expert selection trace", "通信重边", "模型侧专家集合", "数据移动角度", "byte_list" in body prose, "外推", "无缝", "具备高可靠", and unexplained "口径". Prefer understandable expressions such as "路由轨迹", "专家集合", "源 Rank 到目标 Rank 的发送字节数", "逐对端发送字节数", and "仿真设置".
 
 Do not overuse "本文". Avoid dense "不是……而是……" constructions. Do not use conversational phrases such as "看不到", "卡住", "很直接", or "装饰性标签".
 
@@ -63,6 +76,8 @@ Bibliography order must follow the first appearance of citations in the main tex
 
 Do not list a GitHub repository as a separate reference when the thesis already cites a formal paper, arXiv preprint, proceedings paper, or technical report for the same tool/system. Keep the formal paper and remove the repository entry unless the prose explicitly discusses implementation details unavailable in the paper. For example, cite the AIConfigurator arXiv paper for AIConfigurator and do not also include the AIConfigurator GitHub repository as a separate bibliography item; cite the AICB paper for AICB rather than the AICB GitHub repository.
 
+Important: GitHub/reference hygiene is not permission to shrink the bibliography. Only remove repository entries that are true duplicates of already cited formal papers, or entries the user explicitly approves for deletion. If a GitHub repository, web page, report, survey, or preprint has no formal-paper replacement in the thesis, preserve it and keep or restore the corresponding in-text citation. When rebuilding references, diff against the previous thesis version and report every removed item by category: duplicate repository, uncited but retained candidate, or user-approved deletion.
+
 ## Terminology
 
 Use terms consistently:
@@ -77,6 +92,8 @@ Use terms consistently:
 - "Chakra ET转换器" or "转换器", not mixed Converter names.
 - "提升比" for lift; do not write "PMI式提升".
 - "专家放置" for expert placement.
+- Use "Rank" consistently for distributed logical process/device identifiers after first explanation. If readability matters in the abstract or Chapter 1, introduce it as "计算节点（Rank）" before using "Rank" alone.
+- Avoid "Rank 级" when a clearer noun phrase works. Prefer "Rank 负载", "Rank 专家计算时间", or "各 Rank 承载的专家 token 数".
 
 Use symbols consistently when revising formulas:
 
