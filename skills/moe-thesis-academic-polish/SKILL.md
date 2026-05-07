@@ -57,6 +57,12 @@ Prioritize work on simulation platforms and execution traces, then serving-state
 
 Place citations close to the system, paper, or factual claim they support. Avoid long citation dumps such as `[11-14,21-23]`. Use jumpable Word/WPS cross-references when editing DOCX thesis files.
 
+## Reference Hygiene
+
+Bibliography order must follow the first appearance of citations in the main text. Before delivering a DOCX, audit the unique citation sequence before the bibliography and verify that it is `[1], [2], ... [N]` and that the bibliography contains exactly `N` entries unless appendices explicitly cite more sources.
+
+Do not list a GitHub repository as a separate reference when the thesis already cites a formal paper, arXiv preprint, proceedings paper, or technical report for the same tool/system. Keep the formal paper and remove the repository entry unless the prose explicitly discusses implementation details unavailable in the paper. For example, cite the AIConfigurator arXiv paper for AIConfigurator and do not also include the AIConfigurator GitHub repository as a separate bibliography item; cite the AICB paper for AICB rather than the AICB GitHub repository.
+
 ## Terminology
 
 Use terms consistently:
