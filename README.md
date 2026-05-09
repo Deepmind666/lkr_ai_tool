@@ -1,32 +1,28 @@
 # lkr_ai_tool
 
-Portable AI workbench for document editing, editable slides, figures, diagrams,
-project memory, and code-context handoff across machines.
+`lkr_ai_tool` 是一个可迁移的 AI 工作台，主要用于论文写作、Word 文档编辑、可编辑 PPT 制作、论文图表生成、项目记忆、代码库理解和跨机器交接。
 
-This repository is intentionally project-neutral. Put project-specific rules in a
-profile or local `AGENTS.md`, then let this repo carry the reusable methods,
-templates, and tool choices.
+这个仓库刻意保持项目中立。具体项目的规则应该放在项目自己的 `AGENTS.md`、profile 或本地说明文件里；本仓库只保存可复用的方法、模板、脚本、skill 和工具选择。
 
 ## GitHub
 
-Repository: <https://github.com/Deepmind666/lkr_ai_tool>
+仓库地址：<https://github.com/Deepmind666/lkr_ai_tool>
 
-Clone it with:
+克隆命令：
 
 ```powershell
 git clone https://github.com/Deepmind666/lkr_ai_tool.git
 ```
 
-## What This Repo Is For
+## 这个仓库用来做什么
 
-- Give a new GPT/agent enough context to work without re-learning your habits.
-- Keep document, figure, PPT, and experiment handoffs reproducible.
-- Separate local document work from server-side code and experiment work.
-- Preserve editable sources instead of only storing screenshots or flattened
-  images.
-- Record tool decisions so the stack can migrate to another computer.
+- 让新的 GPT、Codex、Claude 或其它 agent 快速理解你的常用工作方式。
+- 保存可复用的论文写作、图表绘制、PPT 制作、文档排版和代码理解流程。
+- 把本地文档工作和服务器端代码、实验工作区分开，避免互相污染。
+- 尽量保留可编辑源文件，而不是只保存截图或不可编辑图片。
+- 记录工具选择和操作规范，方便以后迁移到另一台电脑或另一个 agent。
 
-## Recommended Layout
+## 推荐目录结构
 
 ```text
 lkr_ai_tool/
@@ -39,7 +35,7 @@ lkr_ai_tool/
   templates/
 ```
 
-## First Things To Read
+## 建议优先阅读
 
 1. `docs/usage_for_other_gpts.md`
 2. `docs/migration_playbook.md`
@@ -48,114 +44,107 @@ lkr_ai_tool/
 5. `docs/editable_ppt_workflow.md`
 6. `docs/gpt_image_2_tips.md`
 7. `docs/local_experience.md`
-8. `docs/codewiki_playbook.md` when generating a repository wiki.
+8. `docs/codewiki_playbook.md`，用于生成代码库 wiki 或架构文档。
 
-## Current Bias
+## 当前定位
 
-This kit is optimized for:
+这个工具箱重点服务以下场景：
 
-- DOCX/WPS/Word formatting safety.
-- Editable PPTX generation and revision.
-- Research-style charts and diagrams.
-- AI image generation as a visual asset source, not as a substitute for
-  editable slides.
-- Codebase context packaging for another coding GPT or server agent.
-- Optional CodeWiki-style repository wiki generation for source-only onboarding
-  snapshots.
-- Token-efficient codebase retrieval through MCP/search before broad file reads.
+- DOCX/WPS/Word 格式安全编辑。
+- 可编辑 PPTX 的生成和修改。
+- 学术论文图表、流程图和示意图生成。
+- 把 AI 生成图片作为视觉素材，而不是替代可编辑幻灯片。
+- 为其它 coding GPT 或服务器 agent 打包代码库上下文。
+- 可选使用 CodeWiki 风格工具生成代码库 onboarding wiki。
+- 通过 MCP、搜索、索引和文件清单减少 token 消耗。
 
-## Skill Catalog
+## Skill 目录
 
-Each directory under `skills/` is a standalone agent skill. This catalog explains the main purpose of every skill in the repository.
+`skills/` 下面的每个目录都是一个可独立调用的 agent skill。下面按用途说明每个 skill 的主要功能和适用场景。
 
-### Writing, Thesis, And Research
+### 写作、论文与文献研究
 
-| Skill | Main function | Use when |
+| Skill | 主要功能 | 适用场景 |
 |---|---|---|
-| `academic-research` | Literature search, paper triage, focused reading, citation hygiene, and review-style synthesis without fabricated references. | Looking up papers, comparing related work, extracting claims from PDFs, or preparing BibTeX/citation evidence. |
-| `edit-article` | Revises article drafts for structure, clarity, flow, and readability while preserving the author's intended meaning. | Improving essays, reports, sections, introductions, conclusions, or long-form prose. |
-| `ieee-network-paper-writer` | Writes, revises, and reviews IEEE/ACM networking manuscripts with claim-evidence discipline and reproducibility checks. | Preparing systems/networking paper sections, reviewer responses, figure/table audits, or technical positioning. |
-| `moe-thesis-academic-polish` | Polishes Chinese MoE/ASTRA-sim thesis drafts around the input-chain logic with low-AIGC academic prose. | Revising the MoE workload simulation thesis, especially background, methodology, experiments, and figure captions. |
-| `nature-data` | Produces Nature-ready data availability statements, repository plans, dataset citations, and FAIR metadata. | Preparing Data Availability, code/data release notes, or journal submission data statements. |
-| `nature-paper2ppt` | Converts a paper, preprint, or PDF into a Nature-style Chinese PPTX with selected figures and speaker notes. | Making academic presentation decks from a manuscript or preprint. |
-| `nature-polishing` | Polishes, restructures, or translates academic prose into concise Nature-leaning English. | Improving high-impact journal style, abstracts, significance statements, or rebuttal language. |
-| `thesis-aigc-revision` | Audits and revises Chinese thesis prose to reduce generic AI-like writing while preserving DOCX formatting. | Checking for empty slogans, weak grounding, repeated transitions, missing citations, and DOCX-safe revisions. |
+| `academic-research` | 做文献检索、论文筛选、精读、引用核查和综述式总结，避免编造文献。 | 查论文、比较 related work、从 PDF 中提取证据、准备 BibTeX 或引用依据。 |
+| `edit-article` | 修改文章结构、表达、逻辑和可读性，同时保留作者原意。 | 修改论文段落、报告、说明文、引言、结论或长文草稿。 |
+| `ieee-network-paper-writer` | 按 IEEE/ACM 网络与系统论文风格写作、修改和审查，强调论点-证据对应和可复现性。 | 写系统/网络论文、审查实验叙述、修改图表说明、准备 rebuttal 或技术定位。 |
+| `moe-thesis-academic-polish` | 面向 MoE/ASTRA-sim 毕业论文的中文学术润色，突出输入链路、仿真链路和低 AIGC 表达。 | 修改 MoE 工作负载仿真论文的背景、方法、实验、图注和结论。 |
+| `nature-data` | 生成 Nature 风格的数据可用性声明、仓库发布计划、数据引用和 FAIR 元数据。 | 准备 Data Availability、代码/数据开源说明或投稿材料。 |
+| `nature-paper2ppt` | 从论文、预印本或 PDF 生成 Nature 风格中文 PPTX，包含精选图表和讲稿。 | 把论文快速转成答辩、组会或汇报 PPT。 |
+| `nature-polishing` | 将学术文本润色、重组或翻译成更接近 Nature 系列的简洁英文。 | 修改摘要、重要性陈述、引言、结果段或 rebuttal 英文。 |
+| `thesis-aigc-revision` | 审查并降低中文论文中的 AI 味，补充具体对象、证据和引用，同时保护 DOCX 格式。 | 检查空泛套话、重复转折、证据不足、引用缺失和 DOCX 安全修改。 |
 
-### Figures, Documents, And Presentations
+### 图表、文档与 PPT
 
-| Skill | Main function | Use when |
+| Skill | 主要功能 | 适用场景 |
 |---|---|---|
-| `docx-format-guard` | Protects Word/WPS document formatting, references, tables, fields, and layout during edits. | Editing `.docx` files where page layout, captions, references, or table formatting must not break. |
-| `editable-ppt-builder` | Builds or revises editable PPTX decks with native text, shapes, icons, tables, charts, and assets. | Creating presentation slides that remain editable instead of flattened images. |
-| `figure-pipeline` | Creates reproducible charts, diagrams, and manuscript figures with data, source, exports, and manifests. | Building paper figure packs where every figure must be reproducible from CSV/NPZ/scripts. |
-| `gpt-image-2-workflow` | Uses OpenAI `gpt-image-2` for document/PPT visual assets while keeping labels and layout editable. | Generating bitmap illustrations, covers, or visual backgrounds for documents and slides. |
-| `nature-figure` | Submission-grade high-impact journal figure workflow with Python/R plotting, export, and QA rules. | Making polished multi-panel scientific plots for Nature-style or top-tier manuscript figures. |
+| `docx-format-guard` | 保护 Word/WPS 文档的样式、题注、交叉引用、表格、域和页面布局。 | 修改 `.docx` 时必须保证格式、编号、图表题注和引用不被破坏。 |
+| `editable-ppt-builder` | 生成或修改可编辑 PPTX，优先使用原生文本、形状、图标、表格和图表。 | 制作答辩 PPT、汇报 PPT、论文展示 PPT，且后续还要手动编辑。 |
+| `figure-pipeline` | 建立可复现图表流程，保留数据、脚本、导出文件和 manifest。 | 为论文生成 PDF/SVG/PNG 图表包，并保证能从 CSV/NPZ 一键重画。 |
+| `gpt-image-2-workflow` | 使用 OpenAI `gpt-image-2` 生成文档或 PPT 视觉素材，同时保持文字和布局可编辑。 | 生成封面图、插画、背景图、示意素材或视觉草图。 |
+| `nature-figure` | 面向 Nature/高水平期刊的多子图绘制流程，包含 Python/R 绘图、导出和 QA。 | 制作投稿级多面板科研图、审查配色/字号/版面、导出高质量矢量图。 |
 
-### Codebase Intelligence, Context, And Memory
+### 代码库理解、上下文与记忆
 
-| Skill | Main function | Use when |
+| Skill | 主要功能 | 适用场景 |
 |---|---|---|
-| `codewiki-repo-documentation` | Uses CodeWiki or similar AI wiki generators to create scoped repository architecture documentation. | Building onboarding maps or codebase wiki pages while excluding private data and generated artifacts. |
-| `context-economy` | Reduces token waste through retrieval, indexing, manifests, compact handoffs, and targeted file reads. | Working in large repos, long papers, repeated sessions, or any task where context size is becoming expensive. |
-| `gitnexus-codebase-intelligence` | Indexes, queries, and summarizes large codebases with GitNexus, Repomix, Serena, Sourcebot, or similar tools. | Understanding large repositories without dumping too many files into the chat. |
-| `obsidian-vault` | Searches, creates, and maintains Obsidian notes with wikilinks and index notes. | Managing personal or project knowledge in an Obsidian vault. |
-| `project-memory-handoff` | Maintains portable handoff memory for project state across machines and agent sessions. | Saving current decisions, experiment state, next actions, and recovery notes for future sessions. |
+| `codewiki-repo-documentation` | 使用 CodeWiki 或类似工具生成代码库架构文档和 onboarding wiki。 | 给大型仓库生成结构说明，同时排除私有数据、实验产物和生成文件。 |
+| `context-economy` | 通过检索、索引、文件清单和压缩交接降低 token 消耗。 | 处理大型代码库、长论文、多轮文档任务或上下文成本过高的任务。 |
+| `gitnexus-codebase-intelligence` | 用 GitNexus、Repomix、Serena、Sourcebot 等工具索引、查询和总结大型代码库。 | 不想把大量源码直接塞进对话，但又需要准确理解仓库结构。 |
+| `obsidian-vault` | 搜索、创建和管理 Obsidian 笔记，支持 wikilink 和索引笔记。 | 管理个人知识库、项目笔记、阅读记录或长期研究材料。 |
+| `project-memory-handoff` | 维护可跨机器、跨 agent 复用的项目交接记忆。 | 保存当前决策、实验状态、下一步计划、恢复信息和长期上下文。 |
 
-### Engineering Workflow
+### 工程开发流程
 
-| Skill | Main function | Use when |
+| Skill | 主要功能 | 适用场景 |
 |---|---|---|
-| `diagnose` | Runs a disciplined debug loop: reproduce, minimize, hypothesize, instrument, fix, and regression-test. | Debugging failures, performance regressions, flaky behavior, or unclear root causes. |
-| `git-guardrails-claude-code` | Configures Claude Code hooks to block dangerous git commands and protect the working tree. | Setting up safer AI-agent coding environments with git command guardrails. |
-| `improve-codebase-architecture` | Finds refactoring and architecture-deepening opportunities using domain docs and ADRs. | Auditing a codebase for better module boundaries, abstractions, and maintainability. |
-| `karpathy-guidelines` | Applies coding guardrails that avoid common LLM overengineering and require verification. | Implementing or reviewing code where simplicity, correctness, and tests matter. |
-| `migrate-to-shoehorn` | Migrates TypeScript tests from `as` type assertions to `@total-typescript/shoehorn`. | Cleaning up type-test code that currently relies on unsafe `as` casts. |
-| `pua` | Persistent Unblocking Assistant workflow that prevents giving up, looping, or claiming completion without evidence. | Handling hard tasks that require sustained execution, explicit blockers, and concrete proof of progress. |
-| `setup-pre-commit` | Sets up Husky pre-commit hooks with lint-staged, typecheck, tests, and related checks. | Adding local quality gates to a JavaScript/TypeScript repository. |
-| `tdd` | Test-driven development loop with red, green, refactor discipline. | Adding features or fixes where tests should define behavior before implementation. |
+| `diagnose` | 按复现、最小化、假设、插桩、修复、回归测试的流程排查问题。 | 调试失败、性能退化、偶发 bug 或根因不清的问题。 |
+| `git-guardrails-claude-code` | 配置 Claude Code hook，拦截危险 git 命令，保护工作区。 | 搭建更安全的 AI agent 编码环境，防止误删或误回滚。 |
+| `improve-codebase-architecture` | 基于领域文档和 ADR 查找代码架构改进点。 | 审查模块边界、抽象层次、可维护性和重构机会。 |
+| `karpathy-guidelines` | 应用简洁、可验证、不过度设计的编码准则，减少 LLM 常见工程问题。 | 实现或审查代码时，需要避免复杂化并强调测试验证。 |
+| `migrate-to-shoehorn` | 将 TypeScript 测试中的 `as` 类型断言迁移到 `@total-typescript/shoehorn`。 | 清理依赖不安全 `as` cast 的类型测试代码。 |
+| `pua` | Persistent Unblocking Assistant 工作流，避免 agent 过早放弃、原地循环或无证据宣布完成。 | 处理困难任务，需要持续推进、明确阻塞点并给出进展证据。 |
+| `setup-pre-commit` | 配置 Husky pre-commit hook，接入 lint-staged、typecheck 和测试。 | 给 JavaScript/TypeScript 仓库增加本地提交前质量门禁。 |
+| `tdd` | 按 red-green-refactor 的测试驱动开发流程工作。 | 新增功能或修复 bug 时，希望先用测试定义行为。 |
 
-### Planning And Issue Management
+### 规划、需求与 Issue 管理
 
-| Skill | Main function | Use when |
+| Skill | 主要功能 | 适用场景 |
 |---|---|---|
-| `grill-me` | Stress-tests a plan or design by asking hard questions until the assumptions are clear. | You want a plan challenged before implementation. |
-| `grill-with-docs` | Challenges a plan against existing domain docs and updates CONTEXT/ADR notes inline. | You want critique grounded in project documentation, not generic opinions. |
-| `setup-matt-pocock-skills` | Configures `AGENTS`/`CLAUDE` and `docs/agents` for issue tracker, triage, and domain context workflows. | Bootstrapping a repo for agent-friendly issue and context management. |
-| `to-issues` | Breaks a plan, PRD, or specification into independently grabbable implementation issues. | Turning a roadmap into issue-sized units of work. |
-| `to-prd` | Converts the current conversation context into a PRD and publishes it to an issue tracker. | Capturing requirements, acceptance criteria, and scope from a discussion. |
-| `triage` | Triage issues through a state machine and role-based workflow. | Sorting and refining issue queues before implementation. |
-| `zoom-out` | Forces a higher-level summary of context, direction, risks, and next decisions. | The session is too detailed and needs strategic orientation. |
+| `grill-me` | 用尖锐问题压力测试方案或设计，逼清楚关键假设。 | 实施前想让计划被认真质疑，避免盲区。 |
+| `grill-with-docs` | 基于已有领域文档挑战方案，并把结论更新到 CONTEXT/ADR。 | 希望批判来自项目文档和真实约束，而不是泛泛而谈。 |
+| `setup-matt-pocock-skills` | 配置 `AGENTS`/`CLAUDE` 和 `docs/agents`，支持 issue tracker、triage 和领域上下文工作流。 | 为仓库建立更适合 agent 协作的问题管理和上下文结构。 |
+| `to-issues` | 把计划、PRD 或规格拆成可独立领取的 issue。 | 将路线图拆成明确、可执行、可分配的开发任务。 |
+| `to-prd` | 把当前对话上下文整理成 PRD，并发布到 issue tracker。 | 从讨论中沉淀需求、验收标准和范围边界。 |
+| `triage` | 用状态机和角色分工流程整理 issue。 | 对问题池进行分类、澄清、排优先级和进入实现。 |
+| `zoom-out` | 强制 agent 跳出细节，给出更高层的背景、方向、风险和决策点。 | 当前会话过细、过乱，需要重新建立全局视角。 |
 
-### Skill And Repo Utilities
+### Skill 与仓库工具
 
-| Skill | Main function | Use when |
+| Skill | 主要功能 | 适用场景 |
 |---|---|---|
-| `caveman` | Ultra-compressed terse communication mode that saves tokens while preserving technical accuracy. | You want very short, direct, low-token agent replies. |
-| `codex-performance-maintenance` | Diagnoses and reduces Codex desktop slowness from large sessions, logs, caches, stale worktrees, or local processes. | Codex becomes slow to open, type, render, scroll, or run local checks. |
-| `scaffold-exercises` | Creates exercise directory structures with sections, problems, solutions, and explainers. | Building course or tutorial exercise packs. |
-| `write-a-skill` | Creates new agent skills with proper structure, progressive disclosure, resources, and examples. | Adding a new reusable workflow to this toolbox. |
+| `caveman` | 极简短回复模式，在保证技术准确的前提下尽量节省 token。 | 只需要非常短、直接、低 token 的 agent 回复。 |
+| `codex-performance-maintenance` | 排查并降低 Codex 桌面端卡顿，包括大 session、日志、缓存、旧进程和工作区问题。 | Codex 打开、输入、渲染、滚动或本地检查变慢。 |
+| `scaffold-exercises` | 创建练习目录结构，包含章节、题目、答案和讲解。 | 搭建课程、教程或训练题库。 |
+| `write-a-skill` | 创建新的 agent skill，并保证结构、渐进披露、资源和示例完整。 | 给这个工具箱新增可复用工作流。 |
 
-## Repository Rules
+## 仓库规则
 
-- Do not commit private full drafts, raw datasets, local reports, or generated
-  experiment dumps.
-- Keep source files next to exports: `.drawio` with `.svg` or `.png`, chart
-  scripts with generated plots, PPTX sources with any images used inside them.
-- Prefer editable/native artifacts over screenshots.
-- When a rule is project-specific, store it in that project profile rather than
-  hard-coding it into the shared tool kit.
+- 不要提交私有完整论文、原始数据集、本地报告或大型生成实验产物。
+- 图表和导出物要尽量保留源文件，例如 `.drawio` 配 `.svg`/`.png`，绘图脚本配生成图片，PPTX 配套使用到的图片。
+- 优先保存可编辑、可复现的源文件，不要只保存截图。
+- 项目专属规则应该放在对应 project profile，不要硬编码进这个通用工具箱。
 
-## Project Profiles
+## 项目 Profile
 
-Use `profiles/project_profile_template.md` to create one small profile per
-project. A profile should record file safety rules, preferred tools, source data
-locations, and project-specific formatting constraints.
+使用 `profiles/project_profile_template.md` 为每个项目创建一个简短 profile。profile 应记录文件安全规则、推荐工具、源数据位置和项目专属格式要求。
 
-## GitHub Remote
+## GitHub 远端
 
-Current remote: <https://github.com/Deepmind666/lkr_ai_tool.git>
+当前远端：<https://github.com/Deepmind666/lkr_ai_tool.git>
 
-Recommended update flow:
+推荐更新流程：
 
 ```powershell
 git pull --ff-only
