@@ -29,3 +29,12 @@ args = ["/c", "C:\\Users\\deepmind666\\AppData\\Roaming\\npm\\gitnexus.cmd", "mc
 - Sourcebot: https://github.com/sourcebot-dev/sourcebot
 - CodeGraphContext: https://codegraphcontext.github.io/
 - Gitingest: https://github.com/cyclotruc/gitingest
+- CodeWiki: https://github.com/FSoft-AI4Code/CodeWiki
+
+## CodeWiki 补充定位
+
+CodeWiki 作为可选的仓库 wiki 生成工具纳入工具栈。它适合在仓库边界和忽略规则已经明确后，生成架构级说明、模块地图和交接文档；不适合作为每次小改代码前的默认检索工具。
+
+默认决策顺序仍然是：小问题先用 `rg` 和直接读文件；需要依赖关系时用 GitNexus/Serena；需要给另一个 agent 打包上下文时用 Repomix；需要持久化架构说明或 onboarding wiki 时再用 CodeWiki。
+
+运行前先读 `docs/codewiki_playbook.md`。核心规则是只索引源码、配置和小型文档，排除原始数据集、实验输出、模型权重、归档包、日志、私有论文草稿和缓存目录。

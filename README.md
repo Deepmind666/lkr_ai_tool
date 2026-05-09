@@ -38,6 +38,7 @@ lkr_ai_tool/
 5. `docs/editable_ppt_workflow.md`
 6. `docs/gpt_image_2_tips.md`
 7. `docs/local_experience.md`
+8. `docs/codewiki_playbook.md` when generating a repository wiki.
 
 ## Current Bias
 
@@ -49,6 +50,8 @@ This kit is optimized for:
 - AI image generation as a visual asset source, not as a substitute for
   editable slides.
 - Codebase context packaging for another coding GPT or server agent.
+- Optional CodeWiki-style repository wiki generation for source-only onboarding
+  snapshots.
 - Token-efficient codebase retrieval through MCP/search before broad file reads.
 
 ## Repository Rules

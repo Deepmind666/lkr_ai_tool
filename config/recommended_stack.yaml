@@ -32,6 +32,7 @@ roles:
       - Claude_Context
       - GitNexus
       - Repomix
+      - optional_CodeWiki
       - Serena
       - Aider
       - optional_Cline
@@ -63,6 +64,7 @@ priority_adoption:
     - Repomix_on_server_repos
     - Claude_Context_MCP_trial
     - GitNexus_or_Serena_trial
+    - CodeWiki_for_repo_onboarding_docs
     - marimo_figure_notebooks
     - drawio_source_preservation
   later:

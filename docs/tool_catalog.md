@@ -10,6 +10,7 @@ tool against the exact task before adopting it.
 | Code graph | GitNexus | Builds a code knowledge graph and helps agents inspect dependencies. |
 | Semantic code retrieval | Claude Context | MCP semantic search over indexed codebases; useful for reducing broad context loads. |
 | Code snapshot | Repomix | Packs selected repo files into an AI-friendly context bundle. |
+| Repo wiki | CodeWiki | Generates architecture/onboarding wiki pages after the repo scope and exclusions are clear. |
 | Semantic code work | Serena | MCP-style semantic retrieval and editing for larger codebases. |
 | Terminal coding | Aider | Strong CLI pair-programming workflow for Git repositories. |
 | IDE agents | Cline, Roo Code | Useful when an IDE agent needs to edit and run code locally. |
@@ -52,6 +53,21 @@ tool against the exact task before adopting it.
 - Use when: a server repo must be handed to another GPT without copying raw
   data, generated outputs, or private files.
 - Suggested rule: pack only source, configs, docs, and small examples.
+
+### CodeWiki
+
+- Repo: https://github.com/FSoft-AI4Code/CodeWiki
+- Fit: repository wiki generation, architecture overviews, module maps, and
+  onboarding documentation for another agent or teammate.
+- Use when: the codebase is large enough that a stable architecture wiki saves
+  repeated rediscovery, or when handing a repo to a GPT that needs project
+  orientation before editing.
+- Keep in mind: CodeWiki is a documentation generator, not a proof engine. It
+  can help explain structure, but claims still need direct file inspection and
+  tests before code changes.
+- Privacy rule: never index raw datasets, generated experiment outputs, model
+  weights, archives, logs, private drafts, or credentials. See
+  `docs/codewiki_playbook.md`.
 
 ### Serena
 
