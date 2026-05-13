@@ -120,6 +120,18 @@ For each figure or table, add a short motivation before it and a compact interpr
 
 Treat slowdown, wall cycles, congestion-aware estimates, and no-congestion baselines as unified-simulation proxy indicators. Do not frame them as RTX 5090 performance, real cluster latency, throughput, or QPS.
 
+## Figure, Table, and Algorithm Formatting
+
+When editing DOCX thesis files, load `docx-format-guard` together with this skill. Writing quality and Word/WPS format are both deliverables.
+
+- Classify tables before formatting. Do not apply one global table rule to all tables.
+- Ordinary comparison/result/symbol tables should have no leading cell spaces or hidden indentation; cells normally use horizontal and vertical centering, five-point Chinese text, and Times New Roman for English/numbers.
+- Algorithm tables are a separate object type. Do not center pseudocode bodies, input/output declarations, phase labels, line-number columns, or code-like lines unless the user's existing algorithm template does so.
+- Algorithm blocks should resemble formal thesis algorithms: caption/title, input, output, phases or steps, stable line numbering when present, readable pseudocode, and top/bottom rules. Preserve the user's manually adjusted algorithm style before making any broad table fix.
+- A final table audit must report ordinary-table checks separately from algorithm-table checks. Never claim table formatting passed only because all paragraphs were forcibly centered.
+- Captions must keep thesis convention: table captions above tables, figure captions below figures, algorithm captions according to the user's current thesis template.
+- Image replacement is not enough. After replacing a figure, check its caption, surrounding paragraph reference, visible size, aspect ratio, and whether the figure still supports the local argument.
+
 ## DOCX Safety
 
 Before editing a DOCX thesis:
