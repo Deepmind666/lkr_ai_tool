@@ -109,6 +109,13 @@ Algorithm tables are not ordinary data tables. They often contain pseudocode, in
 - A figure should not occupy a whole page with no interpretation unless the template explicitly requires it. Add a compact motivation before it or interpretation after it.
 - For comparison figures, prefer a left-right composition when the user has rejected vertical stacking.
 - Detect blank pages through rendered PDF text and visual inspection, not only through DOCX paragraph counts.
+- For thesis delivery, a page containing only one orphan line before a forced
+  chapter break is a blocking layout error. Render to PNG, compute low-content
+  pages, inspect them, and fix the preceding paragraph or page break instead of
+  delivering a near-blank page.
+- On Windows/WPS setups, if `Word.Application` reports a false "file may be
+  corrupted" error on a package-valid DOCX, try `KWPS.Application` for export
+  before assuming the file is broken.
 
 ## Delivery Gate
 
@@ -125,3 +132,8 @@ Before delivering any edited DOCX, run separate audits for:
 - highlights and comments if the task touches review marks.
 
 If any gate is not zero or intentionally skipped, say so in the final answer.
+
+For the MoE thesis, do not deliver until the final report includes these
+zero-blocker checks: citation links/superscript, ordinary-table leading spaces
+and indents, algorithm-table leading spaces and indents, forbidden wording,
+formula residue, and rendered blank-like pages.

@@ -33,6 +33,14 @@ Follow the user's preferred Chapter 1 style:
 - Avoid AI-like filler: "具有重要意义", "显著提升", "充分证明", "无缝", "高可靠", "取得良好效果", "由此可见", "提供坚实基础", "深刻揭示".
 - Avoid rejected or unclear terms in prose: "expert selection trace", "通信重边", "模型侧专家集合", "专家访问序列", "数据移动角度", "byte_list", "外推", "口径", unexplained "输入口径".
 - Prefer concrete expressions: "路由轨迹", "每层 token 实际命中的专家集合", "专家负载矩阵", "专家到 Rank 的映射", "各 Rank 承载的专家 token 数", "源 Rank 到目标 Rank 的发送字节数", "逐对端发送字节量", "仿真设置".
+- Before accepting a paragraph, ask whether its first sentence is actually
+  supported by the rest of the paragraph. If the body drifts into model history,
+  serving runtime, or broad AI background, rewrite it back to the simulation
+  input problem.
+- Match the user's preferred 1.1 style: first state the simulation-platform
+  requirement, then explain the MoE mechanism, then name what the input file must
+  preserve. Do not add ornate phrasing when a shorter technical sentence is
+  clearer.
 
 ## Chapter Roles
 
@@ -112,6 +120,16 @@ When editing a DOCX thesis, load `docx-format-guard` together with this skill.
 - When replacing figures, verify: caption, body reference, image size, aspect ratio, page break, and whether the figure is still the correct technical figure from the source document or figure folder.
 - Do not put old Chakra/overall-scheme figures into the wrong chapter. The Chapter 3 overall-scheme figure, Chapter 5 Chakra/DAG figures, and Chapter 4 generation-flow figures have different roles.
 - For awkward vertical figure layouts, consider a left-right composite if the comparison is naturally side-by-side.
+- Large figures need a local narrative. Do not leave two figures glued together
+  without a paragraph explaining what the first establishes and what the second
+  adds.
+- Figure source must be checked against the technical source document and the
+  current figure folder. If the user has replaced an AI-generated Chakra/DAG or
+  overall-scheme figure, do not reinsert the obsolete one.
+- For tables, "no two leading spaces" is a hard blocker. Inspect literal leading
+  whitespace and hidden Word indentation (`w:ind`) in every cell, then verify by
+  rendering. This rule also applies when the current task only edits prose but
+  the final deliverable is a DOCX.
 
 ## Experiment Writing
 
@@ -154,6 +172,11 @@ Before delivering any edited thesis DOCX:
    - blank-like pages in rendered PDF.
 
 Never claim a DOCX is fixed only from XML/text extraction. Rendered visual QA is mandatory when figures, formulas, algorithms, or tables are touched.
+
+If WPS/Word export fails through `Word.Application` but the DOCX package audit
+passes, try `KWPS.Application` before declaring the file corrupted. When using
+scripts to rewrite Chinese text, use UTF-8 Python files rather than PowerShell
+here-strings, which can corrupt Chinese text into `????`.
 
 ## Final Scan
 
