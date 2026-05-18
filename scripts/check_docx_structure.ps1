@@ -115,6 +115,41 @@ try {
         }
     }
 
+    $abstractNoteText = (
+        ([string][char]0x6CE8) + ([string][char]0xFF1A) +
+        ([string][char]0x672C) + ([string][char]0x8BBE) + ([string][char]0x8BA1) +
+        ([string][char]0xFF08) + ([string][char]0x8BBA) + ([string][char]0x6587) +
+        ([string][char]0xFF09) + ([string][char]0x9009) + ([string][char]0x9898) +
+        ([string][char]0x7C7B) + ([string][char]0x578B) + ([string][char]0x4E3A) +
+        ([string][char]0x81EA) + ([string][char]0x9009) + ([string][char]0x9898) +
+        ([string][char]0x76EE) + ([string][char]0x3002)
+    )
+    $abstractNoteCount = 0
+    $abstractNoteSpacingBefore = ''
+    $abstractNoteHighSpacing = $false
+    $abstractNoteHasPageBreakBefore = $false
+    $paragraphs = @($xml.SelectNodes('//w:body/w:p', $ns))
+    for ($i = 0; $i -lt $paragraphs.Count; $i++) {
+        $paragraph = $paragraphs[$i]
+        $text = (Get-NodeText $paragraph $ns).Trim()
+        if ($text -eq $abstractNoteText) {
+            $abstractNoteCount++
+            $spacing = $paragraph.SelectSingleNode('./w:pPr/w:spacing', $ns)
+            if ($spacing) {
+                $abstractNoteSpacingBefore = $spacing.GetAttribute('before', 'http://schemas.openxmlformats.org/wordprocessingml/2006/main')
+                $beforeInt = 0
+                if ([int]::TryParse($abstractNoteSpacingBefore, [ref]$beforeInt)) {
+                    if ($beforeInt -gt 2400) {
+                        $abstractNoteHighSpacing = $true
+                    }
+                }
+            }
+            if ($paragraph.SelectSingleNode('./w:pPr/w:pageBreakBefore', $ns)) {
+                $abstractNoteHasPageBreakBefore = $true
+            }
+        }
+    }
+
     [pscustomobject]@{
         docx = (Resolve-Path -LiteralPath $DocxPath).Path
         package_ok = $true
@@ -126,6 +161,10 @@ try {
         non_superscript_citation_runs = $nonSuperscriptRuns
         algorithm_tables = $algorithmTables
         algorithm_non_left_paragraphs = $algorithmNonLeftParagraphs
+        abstract_note_count = $abstractNoteCount
+        abstract_note_spacing_before = $abstractNoteSpacingBefore
+        abstract_note_high_spacing = $abstractNoteHighSpacing
+        abstract_note_has_page_break_before = $abstractNoteHasPageBreakBefore
     } | Format-List
 }
 finally {

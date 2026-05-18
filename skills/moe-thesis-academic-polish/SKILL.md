@@ -44,7 +44,7 @@ Follow the user's preferred Chapter 1 style:
 
 ## Chapter Roles
 
-- Abstract: State the simulation-input problem first, then method and validation. Use readable objects such as "计算节点" before introducing "Rank" if the abstract would otherwise become opaque. Keep it concise.
+- Abstract: State the simulation-input problem first, then method and validation. Use readable objects such as "计算节点" before introducing "Rank" if the abstract would otherwise become opaque. The Chinese abstract can be close to one page when the user asks for a fuller version, but it must remain dense, technical, and free of generic claims.
 - Chapter 1: Establish the problem. Related work should compare input granularity and explain what each line solves, what it misses, and how the thesis inherits the gap.
 - Chapter 2: Explain only the foundations needed for Chapters 4 and 5: MoE, Top-K routing, routing trace, expert parallelism, Rank, expert-to-Rank mapping, dispatch/combine, All-to-Allv, peer-wise byte matrix, Chakra ET, and AICB/AIOB.
 - Chapter 3: Define interfaces: inputs, outputs, constraints, and checks.
@@ -66,7 +66,11 @@ Prioritize simulation platforms and execution traces, then serving-state simulat
 
 When citing `Patterns behind Chaos`, use it only to support that large-scale MoE routing traces contain expert activation imbalance, adjacent-token correlation, and same-token co-selection. Do not invent broader claims such as "expert access sequences determine data movement".
 
-Place citations close to the system, paper, or factual claim they support. Avoid long citation dumps such as `[11-14,21-23]`. When editing DOCX, use jumpable Word/WPS cross-references and superscript citation display.
+Place citations at the end of the clause or sentence that contains the supported
+claim. Avoid long citation dumps such as `[11-14,21-23]`, `[3]、[4]、[5]`, or a
+range used as a substitute for explanation. Split the prose into concrete
+claims and attach the relevant citation to each claim. When editing DOCX, use
+jumpable Word/WPS cross-references and superscript citation display.
 
 ## Terminology
 
@@ -110,6 +114,10 @@ Formula correctness is a writing deliverable, not a cosmetic detail.
 
 When editing a DOCX thesis, load `docx-format-guard` together with this skill.
 
+- The Chinese abstract note must stay on the Chinese abstract page near the
+  last line: `注：本设计（论文）选题类型为自选题目。`. Do not place it on a
+  separate blank page. Do not use large paragraph spacing that only works in
+  LibreOffice; validate through WPS export.
 - Classify tables before formatting. Ordinary data/comparison/result/symbol tables and algorithm tables have different alignment rules.
 - Ordinary tables: remove leading spaces, full-width spaces, tabs, non-breaking spaces, first-line indents, left indents, hanging indents, and inherited body indentation. Cells should be horizontally and vertically centered unless the user's current template deliberately differs.
 - Algorithm tables: do not run a global "center all table paragraphs" fix. Preserve left-aligned title/input/output/pseudocode according to the user's template.
@@ -161,7 +169,7 @@ Before delivering any edited thesis DOCX:
 2. Preserve user-adjusted cover, abstract, TOC, tables, captions, references, highlighted text, and manually adjusted layout unless a concrete error is verified.
 3. Inspect highlights, comments, REF fields, bookmarks, citation fields, reference numbering, table alignment, figure captions, and algorithms.
 4. Prefer targeted OpenXML edits over whole-document style rewrites.
-5. Export to PDF through WPS/Word and inspect rendered pages for broken formulas, wrong font/size, blank pages, image/caption mismatch, table overflow, and broken fields.
+5. Export to PDF through WPS/Word and inspect rendered pages for broken formulas, wrong font/size, blank pages, image/caption mismatch, table overflow, and broken fields. WPS export is mandatory when the user edits or reviews in WPS.
 6. Run structural checks and report them separately:
    - package validity;
    - citation superscript and jumpability;
@@ -169,6 +177,7 @@ Before delivering any edited thesis DOCX:
    - ordinary table leading spaces/indent/alignment/vertical alignment;
    - algorithm title/body alignment;
    - formula broken-field strings;
+   - Chinese abstract note page placement;
    - blank-like pages in rendered PDF.
 
 Never claim a DOCX is fixed only from XML/text extraction. Rendered visual QA is mandatory when figures, formulas, algorithms, or tables are touched.
@@ -177,6 +186,10 @@ If WPS/Word export fails through `Word.Application` but the DOCX package audit
 passes, try `KWPS.Application` before declaring the file corrupted. When using
 scripts to rewrite Chinese text, use UTF-8 Python files rather than PowerShell
 here-strings, which can corrupt Chinese text into `????`.
+
+If the target DOCX is open in WPS and the filesystem copy/write fails, do not
+keep editing a stale temporary copy. Either use the active `KWPS.Application`
+document object and `Save()`, or ask the user to close the file before writing.
 
 ## Final Scan
 

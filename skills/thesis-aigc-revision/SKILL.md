@@ -27,7 +27,8 @@ checks, AI-like prose cleanup, or thesis paragraph revision.
 5. Revise by adding concrete evidence:
    - technical objects, variables, data sources, equations, checks, or figure
      interpretations;
-   - citations placed beside the exact paper, system, or factual claim;
+   - citations placed at the end of the exact clause or sentence that contains
+     the supported paper, system, or factual claim;
    - paragraph logic that moves from observation to mechanism to consequence.
 6. Do not promise official detector results or detector bypass. The local score
    is only a writing-risk triage signal.
@@ -40,8 +41,10 @@ checks, AI-like prose cleanup, or thesis paragraph revision.
 - Avoid generic thesis phrases such as "has important significance",
   "experiments fully prove", "significantly improves", and "seamlessly maps"
   unless measurements support them.
-- Do not stack many references at the end of a paragraph. Tie references to
-  specific claims.
+- Do not stack many references at the end of a paragraph. Avoid forms such as
+  `[3]、[4]、[5]` or broad ranges used as a substitute for explanation. Split the
+  sentence and tie each citation to the specific system, paper, or claim it
+  supports.
 - Keep boundaries concrete. Prefer "this experiment checks X" over repeated
   disclaimers about what the work does not do.
 - When editing DOCX files, preserve existing cross-references, bookmarks,
@@ -86,6 +89,13 @@ places. Handle them first:
 - Never rewrite Chinese DOCX paragraphs through PowerShell here-strings. They
   can corrupt Chinese text into `????`. Save a UTF-8 Python script with
   `apply_patch`, set `PYTHONIOENCODING=utf-8`, then write a new DOCX copy.
+- If the document is open in WPS, filesystem overwrite may fail while the user
+  still sees the old in-memory document. For final formatting or AIGC delivery,
+  modify through the active `KWPS.Application` document and call `Save()`, or
+  ask the user to close the file before writing.
+- For front matter, WPS visual export is the verification target. Do not rely
+  on LibreOffice-only pagination for abstract notes, keywords, TOC, page
+  numbers, or page breaks.
 - AIGC cleanup is not complete until format checks still pass: citation
   superscript/jumpability, ordinary-table leading spaces/indents, algorithm
   alignment, forbidden terms, formula residue, and rendered blank-like pages.

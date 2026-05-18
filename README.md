@@ -81,7 +81,7 @@ lkr_ai_tool/
 
 | Skill | 主要功能 | 典型用途 |
 |---|---|---|
-| `docx-format-guard` | 保护 Word/WPS 文档的样式、题注、交叉引用、表格和页面布局。 | 修改 `.docx` 时避免破坏编号、引用、题注和版式。 |
+| `docx-format-guard` | 保护 Word/WPS 文档的样式、题注、交叉引用、表格、摘要页和页面布局。 | 修改 `.docx` 时避免破坏编号、引用、题注、摘要注、算法表和版式。 |
 | `editable-ppt-builder` | 生成或修改可编辑 PPTX。 | 制作包含原生文本、形状、图标、表格和图表的演示文稿。 |
 | `figure-pipeline` | 建立可复现的图表生产流程。 | 生成包含数据、脚本、PDF/SVG/PNG 和 manifest 的论文图表包。 |
 | `gpt-image-2-workflow` | 使用 OpenAI `gpt-image-2` 生成视觉素材，并保留文字和布局可编辑性。 | 生成封面图、插画、背景图、示意素材或 PPT 视觉草图。 |

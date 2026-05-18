@@ -54,6 +54,16 @@ submission-package work.
 - Avoid large blank regions and isolated tiny blocks on a page.
 - When the user says "8 pages excluding references", count body pages separately
   from references.
+- In thesis DOCX front matter, the Chinese abstract note must be on the Chinese
+  abstract page near the last line, not on a separate blank page. Validate this
+  in WPS, not only in LibreOffice.
+- In ordinary table cells, never leave literal leading spaces or inherited
+  first-line indentation. This is a blocking formatting issue.
+- Algorithm table titles and pseudocode follow the user's template; do not
+  globally center algorithm-table text.
+- Citation references should appear at the sentence or clause end. Avoid
+  citation dumps such as `[3]、[4]、[5]` unless the user explicitly requests that
+  style.
 
 ## File and Artifact Safety
 

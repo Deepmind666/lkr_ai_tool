@@ -29,6 +29,9 @@ Use this skill before and after editing important DOCX files, especially thesis 
    - ordinary table indentation/alignment did not drift;
    - algorithm formatting was not normalized as an ordinary centered table;
    - important captions and references still render correctly.
+7. For WPS-authored thesis files, treat WPS export as the visual source of
+   truth. LibreOffice rendering is useful for quick checks, but it is not enough
+   for front matter, page breaks, TOC, captions, or algorithm/table layout.
 
 ## General Rules
 
@@ -38,6 +41,35 @@ Use this skill before and after editing important DOCX files, especially thesis 
 - Check hidden paragraph/run properties when text appears visually wrong.
 - Do not use Word/WPS automation for slow whole-document loops unless necessary.
 - Always render or export to PDF and inspect the pages visually when formulas, figures, tables, algorithms, captions, or page breaks are touched.
+- If the document is already open in WPS/Word, a filesystem overwrite can fail
+  or leave the user looking at an unsaved in-memory copy. Use
+  `KWPS.Application`/`Word.Application` to modify the open document and call
+  `Save()`, or ask the user to close the file before writing.
+- Do not claim a file was updated until the timestamp changed and the rendered
+  PDF comes from the same saved path.
+
+## Front Matter And Abstract Pages
+
+Front matter is a blocking delivery area. Small pagination errors here are not
+minor style issues.
+
+- The Chinese abstract note `注：本设计（论文）选题类型为自选题目。` must appear on
+  the Chinese abstract page, near the last line of that page. It must not be
+  pushed to the next blank page or hidden below the printable area.
+- Never use a very large paragraph `SpaceBefore`/`w:spacing before` value to
+  "force" the abstract note to the bottom. This is unstable across WPS, Word,
+  and LibreOffice. If spacing is needed, validate with WPS export; values that
+  pass LibreOffice can still push the note onto a new WPS page.
+- For this note, prefer a conservative ordinary paragraph with left alignment,
+  no first-line indent, no left indent, `SpaceAfter=0`, and only as much
+  `SpaceBefore` as WPS rendering proves safe.
+- After editing the Chinese abstract, export through WPS and inspect the Chinese
+  abstract page and the following English abstract page. The English abstract
+  must still start on its intended page.
+- Chinese and English keyword labels must match the user's template exactly.
+  Do not silently change punctuation, bolding, alignment, or capitalization.
+- The cover, declaration pages, abstracts, TOC, and page numbers must be
+  visually checked. XML text extraction is insufficient for these pages.
 
 ## References
 
@@ -62,6 +94,9 @@ Ordinary tables include comparison tables, result tables, ablation tables, symbo
 - Table cells must not contain leading half-width spaces, full-width spaces, tabs, non-breaking spaces, first-line indents, left indents, hanging indents, or inherited body indentation.
 - Do not rely only on literal text scans. WPS/Word may render inherited paragraph-style indentation inside table cells even when the cell text has no leading spaces and no direct `w:ind`.
 - For ordinary table-cell paragraphs, explicitly override indentation with zero `w:ind` values.
+- Also clear inherited style effects by checking rendered WPS output. A cell can
+  visually show a two-character indent even when literal text has no leading
+  spaces.
 - Ordinary table cells should be horizontally centered and vertically centered unless the user's current table style deliberately uses a different alignment.
 - Ordinary thesis tables should use the required table font and size, commonly five-point Chinese text with Times New Roman for English/numbers.
 - Remove stale or mixed-purpose tables that combine unrelated claims without a clear caption, local narrative, and current data source.
@@ -80,6 +115,9 @@ Algorithm tables are not ordinary data tables. They often contain pseudocode, in
 - Never run a whole-document "center every table paragraph" fix without excluding algorithm/pseudocode tables.
 - If a table caption starts with "算法" or the table contains algorithm markers such as "输入", "输出", "阶段", `for`, `while`, `if`, `else`, `return`, line numbers, or code-like statements, audit it as an algorithm table first.
 - In the current MoE thesis template, algorithm titles are left aligned. Do not right-align them.
+- If an algorithm spans pages, do not allow Word/WPS to repeat a caption-like
+  title as if it were a normal table header unless the user's template already
+  requires that behavior.
 - Do not force algorithm bodies, pseudocode lines, input/output lines, phase labels, or line-number columns to horizontal center.
 - Preserve or restore the user's algorithm style:
   - title/caption handled separately;
