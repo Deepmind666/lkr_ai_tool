@@ -64,7 +64,11 @@ lkr_ai_tool/
 
 | Skill | 主要功能 | 典型用途 |
 |---|---|---|
-| `academic-research` | 文献检索、论文筛选、精读、引用核查和综述式总结。 | 查找论文、比较 related work、整理 BibTeX、避免虚构引用。 |
+| `deep-research` | 13-agent 深度研究 pipeline。7 种模式：full / quick / paper-review / lit-review / fact-check / Socratic 引导 / systematic review (PRISMA 含 meta-analysis)。 | 研究问题构建、系统性文献检索、跨源核查、风险偏倚评估、APA 7.0 报告。源自 [Imbad0202/academic-research-skills](https://github.com/Imbad0202/academic-research-skills) v3.9.x。 |
+| `academic-paper` | 12-agent 论文写作 pipeline。10 种模式（full/plan/outline/revision/abstract/lit-review/format-convert/citation-check 等），支持 6 种论文类型、5 种引用格式、双语摘要、LaTeX/DOCX/PDF 输出。含 Style Calibration、Writing Quality Check、anti-leakage protocol。 | 全文起草、章节规划、修订意见解析、AI 使用披露、写作质量检查。 |
+| `academic-paper-reviewer` | 多视角同行评审：5 名独立 reviewer（EIC + 3 peer + Devil's Advocate），含 0-100 评分 rubrics、复审验证、Socratic 引导、calibration 模式。 | 论文同行评审、方法论聚焦审查、re-review、reviewer 校准。 |
+| `academic-pipeline` | 10-stage 研究全流程编排：research → write → integrity check → review → revise → re-review → re-revise → final integrity → finalize。统一调度 deep-research / academic-paper / academic-paper-reviewer。 | 端到端论文工作流，含 Material Passport、claim 验证、可选 cross-model 完整性核查。 |
+| `academic-research-legacy` | 早期单文件版本：文献检索、论文筛选、精读、引用核查和综述式总结（无 fabricated reference）。 | 已被上面 4 个 skill 取代，保留备查。 |
 | `edit-article` | 改善文章结构、表达、逻辑和可读性。 | 修改论文段落、报告、说明文、引言、结论或长文草稿。 |
 | `ieee-network-paper-writer` | 面向 IEEE/ACM 网络与系统论文的写作、修改和审查。 | 强化论点-证据对应、实验叙述、图表说明和 reproducibility。 |
 | `moe-thesis-academic-polish` | 面向 MoE/ASTRA-sim 毕业论文的中文学术润色。 | 修改 MoE 工作负载仿真论文的背景、方法、实验和图注。 |
