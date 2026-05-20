@@ -53,6 +53,24 @@ Use this skill before and after editing important DOCX files, especially thesis 
 Front matter is a blocking delivery area. Small pagination errors here are not
 minor style issues.
 
+### English Abstract AIGC Guard, 2026-05-20
+
+External report 33 on the MoE thesis showed the whole document below 3% AIGC,
+but `Abstract` alone at 97.0%. Treat the English abstract as a protected
+writing area:
+
+- Rewrite only the English abstract body when the report flags `Abstract`; do
+  not disturb the Chinese abstract, TOC, captions, tables, or figure layout.
+- Keep the same paragraph count and keep `Key words` on the English abstract
+  page unless the user explicitly asks for a layout change.
+- Avoid generic AI-abstract phrases such as "The evaluation covers",
+  "This thesis records", "comprehensive evaluation", "novel framework", and
+  uniform passive sentences.
+- Use concrete project details instead: `routing trace`, `Top-K expert id`,
+  `W[l,e]`, `expert-to-Rank`, `peer-wise All-to-Allv`, `Chakra ET`, `RTX 5090`.
+- After rewriting, export the abstract pages to PDF/PNG and verify that the
+  English keyword line did not move to a separate page.
+
 ### Guangdong Thesis Detector Lessons, 2026-05-20
 
 These rules come from repeated detector reports on the MoE thesis and override
