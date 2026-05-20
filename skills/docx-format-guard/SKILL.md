@@ -76,12 +76,20 @@ older memory for this document.
   template explicitly requires otherwise.
 - Ordinary tables must have no literal leading spaces and no hidden `w:ind`
   paragraph indentation. If the local audit still counts cell indents, remove
-  the `w:ind` element from ordinary table-cell paragraphs.
+  the `w:ind` element from ordinary table-cell paragraphs. Do not write
+  `firstLine=0`/`left=0`/`right=0` as a replacement, because the detector may
+  still treat the presence of `w:ind` as a table-cell indentation error.
 - Algorithm tables are not ordinary tables. Their bodies remain left aligned;
   do not center pseudocode to satisfy ordinary-table checks.
-- The current detector reports full-width Chinese colons in algorithm/table
-  pseudo labels as reminders. In algorithm tables, use half-width `:` for
-  `Input:`, `Output:`, `Stage:`-style labels unless the user freezes otherwise.
+- Report 32 for the MoE thesis flags half-width `:` in algorithm/table pseudo
+  labels as a reminder. In the thesis algorithm tables, write labels and line
+  numbers with full-width Chinese colons, e.g. `输入：`, `输出：`, `1：`.
+  Do not apply this replacement to URLs, Windows paths, English bibliography
+  fields, or `Key words:`.
+- Chinese table-caption paragraphs identified by the document table-caption
+  style must be bold. Fix only actual captions; do not treat explanatory body
+  paragraphs beginning with "表5.2 列出..." as captions. That paragraph is
+  regular body text: 宋体、小四、not bold.
 
 ### MoE Thesis Blocking Overrides
 
