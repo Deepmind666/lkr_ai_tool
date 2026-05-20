@@ -53,6 +53,43 @@ Use this skill before and after editing important DOCX files, especially thesis 
 Front matter is a blocking delivery area. Small pagination errors here are not
 minor style issues.
 
+### Guangdong Thesis Detector Lessons, 2026-05-20
+
+These rules come from repeated detector reports on the MoE thesis and override
+older memory for this document.
+
+- The Chinese abstract note must remain the last visible line on the Chinese
+  abstract page. Put the page break after the note paragraph; do not insert a
+  blank paragraph or oversized spacing before it.
+- The English abstract must start on a new page. `Key words` must stay on the
+  English abstract page.
+- The external format detector currently treats the English `Key words` line
+  and keyword items as `小四` text. Do not set them to `四号`.
+- Updating the table of contents or all fields through WPS/Word can remove
+  direct bold formatting from headings. After every field update, rerun a
+  heading pass that sets chapter, section, subsection, references, and
+  acknowledgements titles to bold.
+- Ordinary tables must have no literal leading spaces and no hidden `w:ind`
+  paragraph indentation. If the local audit still counts cell indents, remove
+  the `w:ind` element from ordinary table-cell paragraphs.
+- Algorithm tables are not ordinary tables. Their bodies remain left aligned;
+  do not center pseudocode to satisfy ordinary-table checks.
+- The current detector reports full-width Chinese colons in algorithm/table
+  pseudo labels as reminders. In algorithm tables, use half-width `:` for
+  `Input:`, `Output:`, `Stage:`-style labels unless the user freezes otherwise.
+
+### MoE Thesis Blocking Overrides
+
+- For the MoE thesis, the Chinese abstract note must be exactly
+  `注：本设计（论文）选题类型为自选题目。` and must be the last visible text line on
+  the Chinese abstract page. If it moves to the following blank page, delivery
+  fails.
+- The abstract must not contain chapter-roadmap phrases such as "第六章",
+  "第 6 章", "本文第几章", or "本章". It should state problem, method, simulation
+  chain, results, and contribution.
+- English `Key words:` must stay on the English abstract page and keep the
+  template label/capitalization.
+
 - The Chinese abstract note `注：本设计（论文）选题类型为自选题目。` must appear on
   the Chinese abstract page, near the last line of that page. It must not be
   pushed to the next blank page or hidden below the printable area.
@@ -79,6 +116,9 @@ minor style issues.
 - Jumpability is mandatory. Figure/table/equation `REF` fields must include the `\h` switch or an equivalent internal hyperlink.
 - Bibliography citations such as `[1]` must be superscript and must link to the matching bibliography entry bookmark, for example `[10]` -> `BibRef010`.
 - WPS may encode citation links as field-code `HYPERLINK \l "BibRefNNN"` rather than `w:hyperlink`. Count both forms before claiming links are missing.
+- Do not leave stacked or range-style body citations such as `[3]、[4]、[5]`,
+  `[12][13]`, `[45-53]`, or `[45]-[53]`. Split the prose and place each
+  citation at the end of the exact clause or sentence it supports.
 - Final citation checks must report `citation_hyperlink_missing=0`, `citation_bad_anchor=0`, and `citation_not_superscript=0`, or explicitly list every remaining exception.
 
 ## Fonts
