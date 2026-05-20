@@ -63,8 +63,9 @@ older memory for this document.
   blank paragraph or oversized spacing before it.
 - The English abstract must start on a new page. `Key words` must stay on the
   English abstract page.
-- The external format detector currently treats the English `Key words` line
-  and keyword items as `小四` text. Do not set them to `四号`.
+- The English keyword line is mixed-size in the current detector: `Key words`
+  label is 四号 (`w:sz=28`), while the keyword items after the colon are 小四
+  (`w:sz=24`). Do not normalize the whole line to one size.
 - Updating the table of contents or all fields through WPS/Word can remove
   direct bold formatting from headings. After every field update, rerun a
   heading pass that sets chapter, section, subsection, references, and

@@ -187,6 +187,20 @@ passes, try `KWPS.Application` before declaring the file corrupted. When using
 scripts to rewrite Chinese text, use UTF-8 Python files rather than PowerShell
 here-strings, which can corrupt Chinese text into `????`.
 
+## External AIGC Report Workflow
+
+When the user provides an AIGC report zip, do not rewrite the whole chapter.
+Extract the report, list the exact flagged paragraphs, and revise only those
+paragraphs. For citation-heavy paragraphs, preserve existing REF/PAGEREF field
+runs and edit only surrounding text runs; otherwise cross-references may lose
+jumpability.
+
+For the current MoE thesis, recent high-risk sections were English Abstract,
+the 1.2.4 boundary paragraph cluster, Chapter 6 data-scope paragraphs, and the
+Chapter 7 conversion summary. The Chinese abstract was not always the hotspot:
+check the report before changing it. Keep paragraph count and page layout stable
+unless the user explicitly asks to change length.
+
 If the target DOCX is open in WPS and the filesystem copy/write fails, do not
 keep editing a stale temporary copy. Either use the active `KWPS.Application`
 document object and `Save()`, or ask the user to close the file before writing.
