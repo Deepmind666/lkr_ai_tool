@@ -69,6 +69,10 @@ older memory for this document.
   direct bold formatting from headings. After every field update, rerun a
   heading pass that sets chapter, section, subsection, references, and
   acknowledgements titles to bold.
+- TOC entries are not headings. Never include `toc 1`-`toc 9` paragraphs in a
+  heading-bold pass. Only the `目录` title itself may be bold; generated TOC
+  entry text, leaders, and page numbers must remain non-bold unless the user's
+  template explicitly requires otherwise.
 - Ordinary tables must have no literal leading spaces and no hidden `w:ind`
   paragraph indentation. If the local audit still counts cell indents, remove
   the `w:ind` element from ordinary table-cell paragraphs.
