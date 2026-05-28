@@ -1,0 +1,4 @@
+interface:
+  display_name: "Patent Disclosure Writing"
+  short_description: "Draft and audit Chinese patent disclosures with formal style and layout checks."
+  default_prompt: "Use this skill to draft, revise, or audit a Chinese patent technical disclosure with university/enterprise review style selection, clear prior-art comparison, protection points, claims, formulas, drawings, and DOCX layout checks."
