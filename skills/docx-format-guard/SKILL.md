@@ -1,6 +1,6 @@
 ---
 name: docx-format-guard
-description: Guard important DOCX/WPS/Word documents by preserving formatting, references, tables, algorithms, formulas, fields, and user-edited layout during edits.
+description: Guard important DOCX/WPS/Word documents by preserving formatting, technical baselines, references, tables, algorithms, formulas, fields, and user-edited layout during edits.
 ---
 
 # DOCX Format Guard
@@ -47,6 +47,28 @@ Use this skill before and after editing important DOCX files, especially thesis 
   `Save()`, or ask the user to close the file before writing.
 - Do not claim a file was updated until the timestamp changed and the rendered
   PDF comes from the same saved path.
+
+## Technical Baseline Edits
+
+Use this when the user names a source version as the technical baseline, for
+example an original review `v4.docx` that should keep its technical content.
+
+- Treat the named baseline as the authority for mechanisms, claims, equations,
+  terminology meanings, routing names, and conclusions.
+- Do not silently "fix" technical details because they look suspicious. Record
+  suspected technical issues separately for user judgment unless the user
+  explicitly approves a technical edit.
+- Limit automatic edits to approved mechanical changes such as casing,
+  typography, punctuation, layout, and term-spacing normalization.
+- For Chinese documents, if the user requires embedded English technical terms
+  to touch adjacent Chinese text, remove spaces in both directions, for example
+  Chinese + space + `token` and `Top-K` + space + Chinese.
+- Save to a new named DOCX instead of overwriting the baseline.
+- After editing, compare extracted text against the baseline transformed only
+  by the approved mechanical rules. Do not deliver if extra text differences
+  appear without being reported.
+- Render or export the final DOCX and visually check pages affected by headings,
+  tables, formulas, figures, captions, or page breaks.
 
 ## Front Matter And Abstract Pages
 
